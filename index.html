@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>مشغل القران الكريم</title>
+  <style>
+    /* CSS styles for the music player */
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: black;
+    }
+    .music-player {
+      max-width: 800px;
+      margin: 50px auto;
+      background-color: #fff;
+      border-radius: 10px;
+      box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+      padding: 30px;
+    }
+    .album-cover {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+    .album-cover img {
+      max-width: 200px;
+      border-radius: 10px;
+    }
+    .player-controls {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 30px;
+    }
+    .player-controls button {
+      background-color: #007bff;
+      color: #fff;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 5px;
+      cursor: pointer;
+      margin: 0 10px;
+    }
+    .player-controls button:hover {
+      background-color: #0056b3;
+    }
+    .playlist {
+      list-style-type: none;
+      padding: 0;
+    }
+    .playlist li {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px;
+      border-bottom: 1px solid #f4f4f4;
+      cursor: pointer;
+    }
+    .playlist li:hover {
+      background-color: #f4f4f4;
+    }
+  </style>
+</head>
+<body>
+  <div class="music-player">
+    <div class="album-cover">
+      <img src="https://c.tenor.com/2RPTRbHyEYgAAAAC/tenor.gif" alt="Album Cover">
+    </div>
+    <div class="player-controls">
+      <button id="prev-btn">Previous</button>
+      <button id="play-btn">Play</button>
+      <button id="next-btn">Next</button>
+    </div>
+    <ul class="playlist">
+      <li data-src="https://ve31.aadika.xyz/download/mQ70kbDmsKA/mp3/128/1721408150/20a7254bdffff21edc517c390fed16c73a3786d2ed269a94c909f4edcea14cf5/1?f=SnapSave.io">
+القرآن الكريم كامل بصوت الشيخ ماهر المعيقلي</li>
+      <li data-src="https://ve39.aadika.xyz/download/mlTEaDewo8g/mp3/128/1721408380/948e755ce079572e1dee3ba511965a13e0375690c4112d6858b37812cd8f3d0f/1?f=SnapSave.io">
+القرآن الكريم كامل بصوت الشيخ سعد الغامدي |</li>
+      <li data-src="https://ve60.aadika.xyz/download/skeK-j4NemU/mp3/128/1721408599/a21b7469d559690ac67913fdeccffdd817f080765c5f16e012ee9f7c86e3b4b0/1?f=SnapSave.io">
+القرآن الكريم كاملا بصوت الشيخ ياسر الدوسري 1-</li>
+      <li data-src="https://ve58.aadika.xyz/download/fcPlyBTzH4I/mp3/128/1721411687/d99c5a45b44a82d22f17cbadfb8c3d949514f86fea556ec259a9e0d73971a02b/1?f=SnapSave.io">|| المصحف كامل - لمدة يوم || الشيخ علي جابر رحمه الله || بجودة صوت عالية ||
+</li>
+      <li data-src="https://ve42.aadika.xyz/download/hqm9fasXauU/mp3/128/1721411813/775d31875444309caddcdd0f63b1df7cd75927226228a0a6f617b12ac5d38e84/1?f=SnapSave.io">
+القرآن الكريم كاملآ بصوت القارئ فارس عباد</li>
+    </ul>
+  </div>
+
+  <script>
+    // JavaScript code for the music player
+    const prevBtn = document.getElementById('prev-btn');
+    const playBtn = document.getElementById('play-btn');
+    const nextBtn = document.getElementById('next-btn');
+    const playlist = document.querySelectorAll('.playlist li');
+    let currentIndex = 0;
+    let audio = new Audio();
+
+    function playSong(index) {
+      audio.src = playlist[index].dataset.src;
+      audio.play();
+    }
+
+    prevBtn.addEventListener('click', () => {
+      currentIndex = (currentIndex - 1 + playlist.length) % playlist.length;
+      playSong(currentIndex);
+    });
+
+    playBtn.addEventListener('click', () => {
+      if (audio.paused) {
+        audio.play();
+      } else {
+        audio.pause();
+      }
+    });
+
+    nextBtn.addEventListener('click', () => {
+      currentIndex = (currentIndex + 1) % playlist.length;
+      playSong(currentIndex);
+    });
+
+    playlist.forEach((song, index) => {
+      song.addEventListener('click', () => {
+        currentIndex = index;
+        playSong(currentIndex);
+      });
+    });
+  </script>
+</body>
+</html>
